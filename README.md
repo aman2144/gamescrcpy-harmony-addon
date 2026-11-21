@@ -4,11 +4,25 @@
 
 这是面向开发者的非官方实验扩展，提供两种投屏方式。DevEco 模式通过本机 DevEco Studio 的投屏组件获取连续 H.264 视频，支持实时单指按下、移动、松开。UITest 兼容模式通过 HDC 逐张截屏，在电脑端编码为 H.264，松手时发送点击或滑动，适合查看界面。两种模式都需要手机解锁并授权 USB 调试。
 
-## 构建
+## Windows 用户从这里开始
+
+1. 在本项目的 [Releases](../../releases/latest) 下载 **GameScrcpy-Harmony-Windows-x64.zip**，全部解压到自己可写的文件夹。在[上游发行页](https://github.com/NuoRan/GameScrcpy/releases/tag/v2.2.1)获取 GameScrcpy **2.2.1 Windows x64**（安装版或完整解压的便携版）。
+2. 双击 `Harmony-USB.cmd`，输入 **1**，选择上一步的 `GameScrcpy.exe`。脚本从你的 GameScrcpy 目录读取已有运行库，生成并校验同目录下的 `harmony-preview.gsext`。在 GameScrcpy 的扩展页导入这个文件、确认权限并启用扩展，随后退出 GameScrcpy。
+3. 手机解锁，开启开发者模式和 USB 调试，用数据线连接并同意调试授权。再次双击 `Harmony-USB.cmd`，输入 **2**，选择同一个 `GameScrcpy.exe`。在启动的 GameScrcpy 里选「鸿蒙 USB 投屏」及「鸿蒙 USB（单指）」。
+
+| 所选方式 | 需要准备 |
+| --- | --- |
+| 选 2，连续投屏 | [DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/) 的 Windows 完整安装及 HarmonyOS SDK（含 HDC、JDK 和投屏组件）。已验证的组件版本见下文。 |
+| 选 3，逐张截屏 | PATH 中可运行的 HDC 和带 libx264 的 FFmpeg。完整 DevEco Studio 和 JDK 可省略。 |
+| 启动菜单 | 默认会使用 DevEco Studio 所附的 Python，或系统中的 Python 3.10+。将 DevEco 安装在自定义位置且未装 Python 的用户可设置 `HARMONY_STUDIO` 为其安装目录。 |
+
+Windows 发布包已包含本扩展的 x64 原生模块，使用者无需安装 Zig、下载 GameScrcpy 源码或编译 C++。手机声音是可选功能，需要另外签名安装声音助手；普通 USB 投屏和触控不需要手机端 HAP。若 GameScrcpy 已打开，先将它完全退出，以便新进程读取本次桥接会话。
+
+## 从源码构建
 
 1. 准备 Windows x64、Python 3.10 或更新版本、Zig 0.15.2 和 DevEco Studio。使用 UITest 兼容模式还需要包含 libx264 的 FFmpeg 命令行工具。可将 `hdc` 和 `ffmpeg` 加入 PATH，或启动时分别以 `--hdc` 和 `--ffmpeg` 指定路径。
 2. 从上游获取 GameScrcpy v2.2.1 的源码和 x64 Windows 程序。源码中的 `third_party/ffmpeg` 目录应包含头文件和导入库。[上游版本](https://github.com/NuoRan/GameScrcpy/tree/v2.2.1)
-3. 指定这两个目录，构建脚本会编译原生扩展、运行宿主测试并生成 `harmony-preview.gsext`。
+3. 指定这两个目录，构建脚本会编译原生扩展、运行宿主测试，生成供本机导入的 `harmony-preview.gsext` 和供其他 Windows 用户下载的 `GameScrcpy-Harmony-Windows-x64.zip`。
 
 ```powershell
 .\build-addon.ps1 -GameScrcpySource <GameScrcpy源码目录> -GameScrcpyInstall <含gs.exe的程序目录>
