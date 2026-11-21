@@ -1,0 +1,36 @@
+{
+  "format": "gamescrcpy.ext-test",
+  "version": 1,
+  "steps": [
+    {
+      "do": "call",
+      "node": "capabilities",
+      "args": [],
+      "expect": {
+        "value": {
+          "platform": "HarmonyOS",
+          "maxContacts": 1,
+          "audio": false,
+          "experimental": true,
+          "gestureContacts": 1,
+          "audioRequiresCompanion": true,
+          "realtimeMultiTouch": false
+        }
+      }
+    },
+    {
+      "do": "call",
+      "node": "stats",
+      "args": [],
+      "expect": {
+        "value": {
+          "frames": 0,
+          "packets": 0,
+          "width": 0,
+          "height": 0,
+          "audioFrames": 0
+        }
+      }
+    }
+  ]
+}

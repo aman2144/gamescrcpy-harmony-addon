@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "id": "org.gamescrcpy.harmonybridge",
+  "version": "0.2.0",
+  "gamescrcpy": "2.2",
+  "name": "HarmonyOS USB Preview",
+  "description": "USB mirroring through a local DevEco Studio installation, with a UITest preview mode, single-touch input and optional playback capture.",
+  "authors": [
+    "HarmonyOS USB Preview contributors"
+  ],
+  "license": "Apache-2.0",
+  "requires": {
+    "native": "^2.1"
+  },
+  "contributes": {
+    "native": {
+      "dll": "native.dll",
+      "videoSources": [
+        {
+          "name": "hdc",
+          "title": "HarmonyOS USB",
+          "kinds": [
+            "phone",
+            "touchBox"
+          ]
+        }
+      ],
+      "audioSources": [
+        {
+          "name": "hdc",
+          "title": "HarmonyOS playback audio"
+        }
+      ],
+      "touchMethods": [
+        {
+          "name": "hdc",
+          "title": "HarmonyOS USB (single touch)",
+          "description": "Experimental one-contact touch control via the local HDC bridge."
+        }
+      ],
+      "nodes": [
+        {
+          "name": "capabilities",
+          "returns": "json"
+        },
+        {
+          "name": "stats",
+          "returns": "json"
+        }
+      ]
+    }
+  },
+  "permissions": [
+    {
+      "name": "media.capture",
+      "reason": "Receives the connected HarmonyOS phone video."
+    },
+    {
+      "name": "network",
+      "reason": "Communicates only with the local HarmonyOS USB bridge.",
+      "hosts": [
+        "127.0.0.1:52781"
+      ]
+    }
+  ],
+  "l10n": {
+    "zh-CN": {
+      "name": "鸿蒙 USB 实验版",
+      "description": "通过本机 DevEco 投屏或 UITest 兼容模式预览屏幕、操作单指触控。可选声音助手需在手机端授权。",
+      "audioSources.hdc.title": "鸿蒙手机播放声音（需声音助手）",
+      "videoSources.hdc.title": "鸿蒙 USB 投屏",
+      "touchMethods.hdc.title": "鸿蒙 USB（单指）",
+      "touchMethods.hdc.description": "通过本机 HDC 桥接转发单指触控。"
+    }
+  }
+}

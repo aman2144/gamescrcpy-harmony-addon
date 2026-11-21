@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "USB playback capture companion"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Playback capture"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "GameScrcpy 声音助手"
+    }
+  ]
+}
