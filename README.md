@@ -56,6 +56,6 @@ UITest 模式要求手机支持 `hdc shell uitest screenCap` 和 `uitest uiInput
 
 ## 验证范围
 
-本版已检查 x64 原生模块编译、清单、GameScrcpy 隔离宿主加载和扩展打包。Java 适配器使用本机 DevEco 库完成编译，声音助手已编译成未签名 HAP。UITest 桥接使用合成画面和模拟触控进行离线验证。本版真机帧率、游戏兼容性和声音播放效果待实测。
+本版已检查 x64 原生模块编译、清单、GameScrcpy 隔离宿主加载和扩展打包。Java 适配器使用本机 DevEco 库完成编译，声音助手已编译成未签名 HAP。UITest 桥接使用合成画面和模拟触控进行离线验证。根据 [v0.2.0 发布说明](../../releases/tag/v0.2.0)，发布页的 Windows ZIP 已在一台授权的鸿蒙真机上验证 UITest 兼容模式：成功采集屏幕帧、编码为 H.264 并在 Windows 上解码。连续投屏模式的真机帧率、真机触控、游戏兼容性和手机音频仍待实测。
 
 扩展和声音助手源码采用 Apache-2.0。GameScrcpy、FFmpeg 和其他外部依赖分别遵循各自的许可证。[第三方说明](NOTICE.md)
